@@ -52,4 +52,14 @@ public class ReportView {
      * 更新日時
      */
     private LocalDateTime updatedAt;
+
+    /**
+     * 進捗
+     */
+    private LocalDateTime progress;
+
+    /**
+     * 取引相手
+     */
+    private LocalDateTime client;
 }

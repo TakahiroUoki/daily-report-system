@@ -94,4 +94,16 @@ public class Report {
     @Column(name = JpaConst.REP_COL_UPDATED_AT, nullable = false)
     private LocalDateTime updatedAt;
 
+    /**
+     * 進捗
+     */
+    @Column(name =JpaConst.REP_COL_PROGRESS, nullable = false)
+    private LocalDateTime progress;
+
+    /**
+     * 取引相手
+     */
+    @Column(name = JpaConst.REP_COL_CLIENT, nullable = false)
+    private LocalDateTime client;
+
 }
