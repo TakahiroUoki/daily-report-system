@@ -28,6 +28,14 @@
                     <td><pre><c:out value="${report.content}" /></pre></td>
                 </tr>
                 <tr>
+                    <th>進捗</th>
+                    <td><pre><c:out value="${report.progress}" /></pre></td>
+                </tr>
+                <tr>
+                    <th>取引相手</th>
+                    <td><pre><c:out value="${report.client} " /></pre></td>
+                </tr>
+                <tr>
                     <th>登録日時</th>
                     <fmt:parseDate value="${report.createdAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="createDay" type="date" />
                     <td><fmt:formatDate value="${createDay}" pattern="yyyy-MM-dd HH:mm:ss" /></td>

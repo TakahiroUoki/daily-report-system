@@ -44,6 +44,16 @@ public class ReportView {
     private String content;
 
     /**
+     * 進捗
+     */
+    private String progress;
+
+    /**
+     * 取引相手
+     */
+    private String client;
+
+    /**
      * 登録日時
      */
     private LocalDateTime createdAt;
@@ -53,13 +63,4 @@ public class ReportView {
      */
     private LocalDateTime updatedAt;
 
-    /**
-     * 進捗
-     */
-    private LocalDateTime progress;
-
-    /**
-     * 取引相手
-     */
-    private LocalDateTime client;
 }
