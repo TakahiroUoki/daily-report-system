@@ -31,6 +31,18 @@ public class ReportValidator {
             errors.add(contentError);
         }
 
+        // 進捗のチェック
+        String progressError = validateProgress(rv.getProgress());
+        if(!progressError.equals("")) {
+            errors.add(progressError);
+        }
+
+        // 取引相手のチェック
+        String clientError = validateClient(rv.getClient());
+        if(!clientError.equals("")) {
+            errors.add(clientError);
+        }
+
         return errors;
     }
 
@@ -56,6 +68,34 @@ public class ReportValidator {
     private static String validateContent(String content) {
         if(content == null || content.equals("")) {
             return MessageConst.E_NOCONTENT.getMessage();
+        }
+
+        // 入力値がある場合は空文字を返却
+        return "";
+    }
+
+    /**
+     * 進捗に入力値があるかをチェックし、入力値がなければエラーメッセージを返却
+     * @param progress 進捗
+     * @return エラーメッセージ
+     */
+    private static String validateProgress(String progress) {
+        if(progress == null || progress.equals("")) {
+            return MessageConst.E_NOPROGRESS.getMessage();
+        }
+
+        // 入力値がある場合は空文字を返却
+        return "";
+    }
+
+    /**
+     * 取引相手に入力値があるかをチェックし、入力値がなければエラーメッセージを返却
+     * @param client 取引相手
+     * @return エラーメッセージ
+     */
+    private static String validateClient(String client) {
+        if(client == null || client.equals("") ) {
+            return MessageConst.E_NOCLIENT.getMessage();
         }
 
         // 入力値がある場合は空文字を返却
