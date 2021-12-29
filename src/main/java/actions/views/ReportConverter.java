@@ -23,10 +23,10 @@ public class ReportConverter {
                 rv.getReportDate(),
                 rv.getTitle(),
                 rv.getContent(),
-                rv.getCreatedAt(),
-                rv.getUpdatedAt(),
                 rv.getProgress(),
-                rv.getClient());
+                rv.getClient(),
+                rv.getCreatedAt(),
+                rv.getUpdatedAt());
     }
 
     /**
@@ -46,10 +46,10 @@ public class ReportConverter {
                 r.getReportDate(),
                 r.getTitle(),
                 r.getContent(),
-                r.getCreatedAt(),
-                r.getUpdatedAt(),
                 r.getProgress(),
-                r.getClient());
+                r.getClient(),
+                r.getCreatedAt(),
+                r.getUpdatedAt());
     }
 
     /**
@@ -78,10 +78,10 @@ public class ReportConverter {
         r.setReportDate(rv.getReportDate());
         r.setTitle(rv.getTitle());
         r.setContent(rv.getContent());
-        r.setCreatedAt(rv.getCreatedAt());
-        r.setUpdatedAt(rv.getUpdatedAt());
         r.setProgress(rv.getProgress());
         r.setClient(rv.getClient());
+        r.setCreatedAt(rv.getCreatedAt());
+        r.setUpdatedAt(rv.getUpdatedAt());
     }
 
 }
