@@ -83,18 +83,6 @@ public class Report {
     private String content;
 
     /**
-     * 登録日時
-     */
-    @Column(name = JpaConst.REP_COL_CREATED_AT, nullable = false)
-    private LocalDateTime createdAt;
-
-    /**
-     * 更新日時
-     */
-    @Column(name = JpaConst.REP_COL_UPDATED_AT, nullable = false)
-    private LocalDateTime updatedAt;
-
-    /**
      * 進捗
      */
     @Column(name =JpaConst.REP_COL_PROGRESS, nullable = false)
@@ -105,5 +93,17 @@ public class Report {
      */
     @Column(name = JpaConst.REP_COL_CLIENT, nullable = false)
     private LocalDateTime client;
+
+    /**
+     * 登録日時
+     */
+    @Column(name = JpaConst.REP_COL_CREATED_AT, nullable = false)
+    private LocalDateTime createdAt;
+
+    /**
+     * 更新日時
+     */
+    @Column(name = JpaConst.REP_COL_UPDATED_AT, nullable = false)
+    private LocalDateTime updatedAt;
 
 }
