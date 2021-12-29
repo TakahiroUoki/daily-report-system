@@ -86,13 +86,13 @@ public class Report {
      * 進捗
      */
     @Column(name =JpaConst.REP_COL_PROGRESS, nullable = false)
-    private LocalDateTime progress;
+    private String progress;
 
     /**
      * 取引相手
      */
     @Column(name = JpaConst.REP_COL_CLIENT, nullable = false)
-    private LocalDateTime client;
+    private String client;
 
     /**
      * 登録日時
