@@ -85,12 +85,14 @@ public class Report {
     /**
      * 進捗
      */
+    @Lob
     @Column(name =JpaConst.REP_COL_PROGRESS, nullable = false)
     private String progress;
 
     /**
      * 取引相手
      */
+    @Lob
     @Column(name = JpaConst.REP_COL_CLIENT, nullable = false)
     private String client;
 

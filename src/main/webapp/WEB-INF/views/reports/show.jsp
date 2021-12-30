@@ -33,7 +33,7 @@
                 </tr>
                 <tr>
                     <th>取引相手</th>
-                    <td><c:out value="${report.client} " /></td>
+                    <td><c:out value="${report.client}" /></td>
                 </tr>
                 <tr>
                     <th>登録日時</th>
