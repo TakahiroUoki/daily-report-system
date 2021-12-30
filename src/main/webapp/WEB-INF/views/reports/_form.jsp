@@ -30,11 +30,11 @@
 <br /><br />
 
 <label for="${AttributeConst.REP_PROGRESS.getValue()}">進捗</label><br />
-<textarea name="${AttributeConst.REP_PROGRESS.getValue()}" rows="5" cols="30">${report.progress}</textarea>
+<textarea name="${AttributeConst.REP_PROGRESS.getValue()}" rows="5" cols="20">${report.progress}</textarea>
 <br /><br />
 
 <label for="${AttributeConst.REP_CLIENT.getValue()}">取引相手</label><br />
-<textarea name="${AttributeConst.REP_CLIENT.getValue()}" rows="3" cols="20">${report.client}</textarea>
+<textarea name="${AttributeConst.REP_CLIENT.getValue()}" rows="3" cols="18">${report.client}</textarea>
 <br /><br />
 <input type="hidden" name="${AttributeConst.REP_ID.getValue()}" value="${report.id}" />
 <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
