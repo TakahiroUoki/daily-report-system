@@ -25,6 +25,16 @@ public interface JpaConst {
     String EMP_COL_UPDATED_AT = "updated_at"; // 更新日時
     String EMP_COL_DELETE_FLAG = "delete_flag"; // 削除フラグ
 
+    // 顧客テーブル
+    String TABLE_CLI = "clients"; // テーブル名
+    // 顧客テーブルカラム
+    String CLI_COL_ID = "id"; // id
+    String CLI_COL_NAME = "name"; // 氏名
+    String CLI_COL_DEPART = "depart"; // 部署
+    String CLI_COL_DIVISION = "division"; // 課
+    String CLI_COL_POSITION = "position"; // 役職
+    String CLI_COL_DELETE_FLAG = "delete_flag"; // 削除フラグ
+
     int ROLE_ADMIN = 1; // 管理者権限ON(管理者)
     int ROLE_GENERAL = 0; // 管理者権限OFF(一般)
     int EMP_DEL_TRUE = 1; // 削除フラグON(削除済み)
@@ -39,18 +49,20 @@ public interface JpaConst {
     String REP_COL_TITLE = "title"; // 日報のタイトル
     String REP_COL_CONTENT = "content"; // 日報の内容
     String REP_COL_PROGRESS = "progress"; //進捗
-    String REP_COL_CLIENT = "client"; // 取引相手
     String REP_COL_CREATED_AT = "created_at"; // 登録日時
     String REP_COL_UPDATED_AT = "updated_at"; // 更新日時
+    String REP_COL_CLIID = "cliId"; // 顧客ID
 
     // Entity名
     String ENTITY_EMP = "employee"; // 従業員
+    String ENTITY_CLI = "client"; // 顧客
     String ENTITY_REP = "report"; // 日報
 
     // JPQL内パラメータ
     String JPQL_PARM_CODE = "code"; // 社員番号
     String JPQL_PARM_PASSWORD = "password"; // パスワード
     String JPQL_PARM_EMPLOYEE = "employee"; // 従業員
+    String JPQL_PARM_CLIENT = "client"; // 顧客
 
     // NamedQueryのnameとquery
     // 全ての従業員をidの降順に取得する
@@ -65,6 +77,12 @@ public interface JpaConst {
     //指定した社員番号を保持する従業員の件数を取得する
     String Q_EMP_COUNT_RESISTERED_BY_CODE = ENTITY_EMP + ".countRegisteredByCode";
     String Q_EMP_COUNT_RESISTERED_BY_CODE_DEF = "SELECT COUNT(e) FROM Employee AS e WHERE e.code = :" + JPQL_PARM_CODE;
+    // すべての顧客をidの降順に取得する
+    String Q_CLI_GET_ALL = ENTITY_CLI + ".getAll"; // name
+    String Q_CLI_GET_ALL_DEF = "SELECT c FROM Client AS c ORDER BY c.id DESC"; //query
+    // 全ての顧客の件数を取得する
+    String Q_CLI_COUNT = ENTITY_CLI + ".count";
+    String Q_CLI_COUNT_DEF = "SELECT COUNT(c) FROM Client AS c";
     //全ての日報をidの降順に取得する
     String Q_REP_GET_ALL = ENTITY_REP + ".getAll";
     String Q_REP_GET_ALL_DEF = "SELECT r FROM Report AS r ORDER BY r.id DESC";
@@ -77,5 +95,12 @@ public interface JpaConst {
     //指定した従業員が作成した日報の件数を取得する
     String Q_REP_COUNT_ALL_MINE = ENTITY_REP + ".countAllMine";
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
+    //指定した顧客担当の日報を全件idの降順で取得する
+    String Q_REP_GET_ALL_YOURS = ENTITY_REP + ".getAllYOURS";
+    String Q_REP_GET_ALL_YOURS_DEF = "SELECT r FROM Report AS r WHERE r.client = :" + JPQL_PARM_CLIENT + " ORDER BY r.cliId DESC";
+    //指定した顧客担当の日報の件数を取得する
+    String Q_REP_COUNT_ALL_YOURS = ENTITY_REP + ".countAllYOURS";
+    String Q_REP_COUNT_ALL_YOURS_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.client = :" + JPQL_PARM_CLIENT;
+
 
 }

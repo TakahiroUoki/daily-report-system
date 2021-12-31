@@ -35,6 +35,16 @@ public enum AttributeConst {
     EMP_NAME("name"),
     EMP_ADMIN_FLG("admin_flag"),
 
+    // 顧客管理
+    CLIENT("client"),
+    CLIENTS("clients"),
+    CLI_COUNT("clients_count"),
+    CLI_ID("id"),
+    CLI_NAME("name"),
+    CLI_DEPART("depart"),
+    CLI_DIVISION("division"),
+    CLI_POSITION("position"),
+
     // 管理者フラグ
     ROLE_ADMIN(1),
     ROLE_GENERAL(0),
@@ -52,7 +62,7 @@ public enum AttributeConst {
     REP_TITLE("title"),
     REP_CONTENT("content"),
     REP_PROGRESS("progress"),
-    REP_CLIENT("client");
+    REP_CLIID("cliId");
 
     private final String text;
     private final Integer i;
