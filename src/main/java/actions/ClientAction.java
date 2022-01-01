@@ -9,6 +9,8 @@ import actions.views.ClientView;
 import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
+import constants.MessageConst;
+import constants.PropertyConst;
 import services.ClientService;
 
 /**
@@ -77,6 +79,55 @@ public class ClientAction extends ActionBase {
 
         // 新規登録画面を表示
         forward(ForwardConst.FW_CLI_NEW);
+    }
+
+    /**
+     * 新規登録を行う
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void create() throws ServletException, IOException {
+
+        // CERF対策 tokenのチェック
+        if(checkToken()) {
+
+            // パラメータの値を元に顧客情報のインスタンスを作成
+            ClientView cv = new ClientView(
+                    null,
+                    getRequestParam(AttributeConst.CLI_NAME),
+                    getRequestParam(AttributeConst.CLI_DEPART),
+                    getRequestParam(AttributeConst.CLI_DIVISION),
+                    getRequestParam(AttributeConst.CLI_POSITION),
+                    null,
+                    null,
+                    AttributeConst.DEL_FLAG_FALSE.getIntegerValue());
+
+            // アプリケーションスコープからpepper文字列を取得
+            String pepper = getContextScope(PropertyConst.PEPPER);
+
+            // 顧客情報登録
+            List<String> errors = service.create(cv, pepper);
+
+            if(errors.size() > 0) {
+                // 登録中にエラーがあった場合
+
+                putRequestScope(AttributeConst.TOKEN, getTokenId()); // CSRF対策用トークン
+                putRequestScope(AttributeConst.CLIENT, cv); // 入力された顧客情報
+                putRequestScope(AttributeConst.ERR, errors); // エラーのリスト
+
+                // 新規登録画面を再表示
+                forward(ForwardConst.FW_EMP_NEW);
+
+            }else {
+                // 登録中にエラーがなかった場合
+
+                // セッションに登録完了のフラッシュメッセージを設定
+                putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage());
+
+                // 一覧画面にリダイレクト
+                redirect(ForwardConst.ACT_CLI, ForwardConst.CMD_INDEX);
+            }
+        }
     }
 
 }
