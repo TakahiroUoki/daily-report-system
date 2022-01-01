@@ -153,4 +153,28 @@ public class ClientAction extends ActionBase {
         forward(ForwardConst.FW_CLI_SHOW);
     }
 
+    /**
+     * 編集画面を表示する
+     * @throw ServletException
+     * @throws IOException
+     */
+    public void edit() throws ServletException, IOException {
+
+        // idを条件に顧客データを取得する
+        ClientView cv = service.findOne(toNumber(getRequestParam(AttributeConst.CLI_ID)));
+
+        if(cv == null || cv.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()) {
+
+            // データが取得できなかった、または論理削除されている場合はエラー画面を表示
+            forward(ForwardConst.FW_ERR_UNKNOWN);
+            return;
+        }
+
+        putRequestScope(AttributeConst.TOKEN, getTokenId()); // CSRF対策用トークン
+        putRequestScope(AttributeConst.CLIENT, cv); // 取得した顧客情報
+
+        // 編集画面を表示する
+        forward(ForwardConst.FW_EMP_EDIT);
+    }
+
 }
