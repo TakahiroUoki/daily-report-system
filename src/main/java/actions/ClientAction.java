@@ -130,4 +130,27 @@ public class ClientAction extends ActionBase {
         }
     }
 
+    /**
+     * 詳細画面を表示する
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void show() throws ServletException, IOException {
+
+        // idを条件に顧客データを取得する
+        ClientView cv = service.findOne(toNumber(getRequestParam(AttributeConst.CLI_ID)));
+
+        if(cv == null || cv.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()) {
+
+          // データが取得できなかった、または論理削除されている場合はエラー画面を表示
+            forward(ForwardConst.FW_ERR_UNKNOWN);
+            return;
+        }
+
+        putRequestScope(AttributeConst.CLIENT, cv); // 取得した顧客情報
+
+        // 詳細画面を表示
+        forward(ForwardConst.FW_CLI_SHOW);
+    }
+
 }
