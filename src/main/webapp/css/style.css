@@ -172,3 +172,11 @@ table#client_list td {
     width: 29%;
     padding: 10px 2%;
 }
+
+#client_name {
+    color: #cccccc;
+    width: 36%;
+    padding-right: 3%;
+    text-align: right;
+    display: inline-block;
+}
