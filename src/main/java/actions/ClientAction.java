@@ -177,4 +177,74 @@ public class ClientAction extends ActionBase {
         forward(ForwardConst.FW_EMP_EDIT);
     }
 
+    /**
+     * 更新を行う
+     * @throws ServletException
+     * @throws IOExcpetion
+     */
+    public void update() throws ServletException, IOException{
+
+        // CSRF対策 tokenのチェック
+        if(checkToken()) {
+            // パラメータの値を元に顧客情報のインスタンスを作成
+            ClientView cv = new ClientView(
+                    toNumber(getRequestParam(AttributeConst.CLI_ID)),
+                    getRequestParam(AttributeConst.CLI_NAME),
+                    getRequestParam(AttributeConst.CLI_DEPART),
+                    getRequestParam(AttributeConst.CLI_DIVISION),
+                    getRequestParam(AttributeConst.CLI_POSITION),
+                    null,
+                    null,
+                    AttributeConst.DEL_FLAG_FALSE.getIntegerValue());
+
+            // アプリケーションスコープからpepper文字列を取得
+            String pepper = getContextScope(PropertyConst.PEPPER);
+
+            // 顧客情報更新
+            List<String> errors = service.update(cv, pepper);
+
+            if(errors.size() > 0) {
+               // 更新中にエラーが発生した場合
+
+               putRequestScope(AttributeConst.TOKEN, getTokenId()); // CSRF対策用トークン
+               putRequestScope(AttributeConst.CLIENT, cv); // 入力された従業員情報
+               putRequestScope(AttributeConst.ERR, errors); // エラーのリスト
+
+               // 編集画面を再表示
+               forward(ForwardConst.FW_CLI_EDIT);
+            }else {
+                // 更新中にエラーがなかった場合
+
+                // セッションに更新完了のフラッシュメッセージを設定
+                putSessionScope(AttributeConst.FLUSH, MessageConst.I_UPDATED.getMessage());
+
+                // 一覧画面にリダイレクト
+                redirect(ForwardConst.ACT_CLI, ForwardConst.CMD_INDEX);
+            }
+
+
+        }
+    }
+
+    /**
+     * 論理削除を行う
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void destroy() throws ServletException, IOException {
+
+        // CSRF対策 tokenのチェック
+        if(checkToken()) {
+
+            // idを条件に顧客データを論理削除する
+            service.destroy(toNumber(getRequestParam(AttributeConst.CLI_ID)));
+
+            // セッションに削除完了のフラッシュメッセージを設定
+            putSessionScope(AttributeConst.FLUSH, MessageConst.I_DELETED.getMessage());
+
+            // 一覧画面にリダイレクト
+            redirect(ForwardConst.ACT_CLI, ForwardConst.CMD_INDEX);
+        }
+    }
+
 }
