@@ -65,4 +65,18 @@ public class ClientAction extends ActionBase {
 
     }
 
+    /**
+     * 新規登録画面を表示する
+     * @throws ServletException
+     * @throws IOExeption
+     */
+    public void entryNew() throws ServletException, IOException {
+
+        putRequestScope(AttributeConst.TOKEN, getTokenId()); // CSRF対策用トークン
+        putRequestScope(AttributeConst.CLIENT, new ClientView()); // 空の顧客インスタンス
+
+        // 新規登録画面を表示
+        forward(ForwardConst.FW_CLI_NEW);
+    }
+
 }
