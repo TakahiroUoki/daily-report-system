@@ -22,7 +22,7 @@ public enum MessageConst {
     E_NOPASSWORD("パスワードを入力してください。"),
     E_NOEMP_CODE("社員番号を入力してください。"),
     E_EMP_CODE_EXIST("入力された社員番号の情報は既に存在しています。"),
-    E_NOCLI_DEPART("顧客の部署を入力してください"),
+    E_NODEPART("顧客の部署を入力してください"),
     E_NOTITLE("タイトルを入力してください。"),
     E_NOCONTENT("内容を入力してください。"),
     E_NOPROGRESS("進捗を入力してください。"),
