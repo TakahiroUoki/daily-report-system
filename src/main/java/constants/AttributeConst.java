@@ -62,7 +62,7 @@ public enum AttributeConst {
     REP_TITLE("title"),
     REP_CONTENT("content"),
     REP_PROGRESS("progress"),
-    REP_CLIENTNAME("client_name");
+    REP_CLIENT_NAME("client_name");
 
     private final String text;
     private final Integer i;

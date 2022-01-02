@@ -101,7 +101,7 @@ public interface JpaConst {
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
     //指定した顧客担当の日報を全件idの降順で取得する
     String Q_REP_GET_ALL_YOURS = ENTITY_REP + ".getAllYOURS";
-    String Q_REP_GET_ALL_YOURS_DEF = "SELECT r FROM Report AS r WHERE r.client = :" + JPQL_PARM_CLIENT + " ORDER BY r.cliId DESC";
+    String Q_REP_GET_ALL_YOURS_DEF = "SELECT r FROM Report AS r WHERE r.client = :" + JPQL_PARM_CLIENT + " ORDER BY r.clientName DESC";
     //指定した顧客担当の日報の件数を取得する
     String Q_REP_COUNT_ALL_YOURS = ENTITY_REP + ".countAllYOURS";
     String Q_REP_COUNT_ALL_YOURS_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.client = :" + JPQL_PARM_CLIENT;
