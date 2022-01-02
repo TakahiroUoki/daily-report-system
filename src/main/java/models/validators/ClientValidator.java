@@ -5,7 +5,6 @@ import java.util.List;
 
 import actions.views.ClientView;
 import constants.MessageConst;
-import services.ClientService;
 
 /**
  * 顧客インスタンスに設定されている値のバリデーションを行うクラス
@@ -15,11 +14,10 @@ public class ClientValidator {
 
     /**
      * 顧客インスタンスの各項目についてバリデーションを行う
-     * @param service 呼び出し元Serviceクラスのインスタンス
      * @param cv ClientServiceのインスタンス
      * @return エラーのリスト
      */
-    public static List<String> validate(ClientService service, ClientView cv){
+    public static List<String> validate(ClientView cv){
         List<String> errors = new ArrayList<String>();
 
         // 氏名のチェック
@@ -43,7 +41,6 @@ public class ClientValidator {
      * @return エラーメッセージ
      */
     private static String validateName(String name) {
-
         if(name == null || name.equals("")) {
             return MessageConst.E_NONAME.getMessage();
         }
@@ -58,8 +55,7 @@ public class ClientValidator {
      * @return エラーメッセージ
      */
     private static String validateDepart(String depart) {
-
-        if(depart == null || depart.equals("")) {
+      if(depart == null || depart.equals("")) {
             return MessageConst.E_NODEPART.getMessage();
         }
 

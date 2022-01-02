@@ -63,7 +63,7 @@ public class ClientService  extends ServiceBase {
         cv.setUpdatedAt(now);
 
         // 登録内容のバリデーションを行う
-        List<String> errors = ClientValidator.validate(this, cv);
+        List<String> errors = ClientValidator.validate(cv);
 
         // バリデーションエラーがなければデータを登録する
         if(errors.size() == 0) {
@@ -75,7 +75,7 @@ public class ClientService  extends ServiceBase {
     }
 
     /**
-     * 画面から入力された顧客の更新内容を元にデータを1件作成し、従業員テーブルを更新する
+     * 画面から入力された顧客の更新内容を元にデータを1件作成し、顧客テーブルを更新する
      * @param cv 画面から入力された顧客の登録内容
      * @param pepper pepper文字列
      * @return バリデーションや更新処理中に発生したエラーのリスト
@@ -86,13 +86,16 @@ public class ClientService  extends ServiceBase {
        ClientView savedCli = findOne(cv.getId());
 
         savedCli.setName(cv.getName()); //変更後の氏名を設定する
+        savedCli.setDepart(cv.getDepart()); // 変更後の部署を設定する
+        savedCli.setDivision(cv.getDivision()); // 変更後の課を設定する
+        savedCli.setPosition(cv.getPosition()); // 変更後の役職を設定する
 
         //更新日時に現在時刻を設定する
         LocalDateTime today = LocalDateTime.now();
         savedCli.setUpdatedAt(today);
 
         //更新内容についてバリデーションを行う
-        List<String> errors = ClientValidator.validate(this, savedCli);
+        List<String> errors = ClientValidator.validate(savedCli);
 
         //バリデーションエラーがなければデータを更新する
         if (errors.size() == 0) {
@@ -109,7 +112,7 @@ public class ClientService  extends ServiceBase {
      */
     public void destroy(Integer id) {
 
-        //idを条件に登録済みの従業員情報を取得する
+        //idを条件に登録済みの顧客情報を取得する
         ClientView savedCli = findOne(id);
 
         //更新日時に現在時刻を設定する
