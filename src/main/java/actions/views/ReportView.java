@@ -49,11 +49,6 @@ public class ReportView {
     private String progress;
 
     /**
-     * 取引相手
-     */
-    private String client;
-
-    /**
      * 登録日時
      */
     private LocalDateTime createdAt;
@@ -62,5 +57,10 @@ public class ReportView {
      * 更新日時
      */
     private LocalDateTime updatedAt;
+
+    /**
+     * 担当顧客
+     */
+    private String client;
 
 }

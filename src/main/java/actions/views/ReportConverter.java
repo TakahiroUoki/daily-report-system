@@ -24,9 +24,9 @@ public class ReportConverter {
                 rv.getTitle(),
                 rv.getContent(),
                 rv.getProgress(),
-                rv.getClient(),
                 rv.getCreatedAt(),
-                rv.getUpdatedAt());
+                rv.getUpdatedAt(),
+                rv.getClient());
     }
 
     /**
@@ -47,9 +47,9 @@ public class ReportConverter {
                 r.getTitle(),
                 r.getContent(),
                 r.getProgress(),
-                r.getClient(),
                 r.getCreatedAt(),
-                r.getUpdatedAt());
+                r.getUpdatedAt(),
+                r.getClient());
     }
 
     /**
@@ -79,9 +79,9 @@ public class ReportConverter {
         r.setTitle(rv.getTitle());
         r.setContent(rv.getContent());
         r.setProgress(rv.getProgress());
-        r.setClient(rv.getClient());
         r.setCreatedAt(rv.getCreatedAt());
         r.setUpdatedAt(rv.getUpdatedAt());
+        r.setClient(rv.getClient());
     }
 
 }
