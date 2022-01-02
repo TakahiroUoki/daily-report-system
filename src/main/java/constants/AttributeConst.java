@@ -35,6 +35,10 @@ public enum AttributeConst {
     EMP_NAME("name"),
     EMP_ADMIN_FLG("admin_flag"),
 
+    // 管理者フラグ
+    ROLE_ADMIN(1),
+    ROLE_GENERAL(0),
+
     // 顧客管理
     CLIENT("client"),
     CLIENTS("clients"),
@@ -44,10 +48,6 @@ public enum AttributeConst {
     CLI_DEPART("depart"),
     CLI_DIVISION("division"),
     CLI_POSITION("position"),
-
-    // 管理者フラグ
-    ROLE_ADMIN(1),
-    ROLE_GENERAL(0),
 
     // 削除フラグ
     DEL_FLAG_TRUE(1),
