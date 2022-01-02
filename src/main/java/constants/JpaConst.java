@@ -55,7 +55,7 @@ public interface JpaConst {
     String REP_COL_PROGRESS = "progress"; //進捗
     String REP_COL_CREATED_AT = "created_at"; // 登録日時
     String REP_COL_UPDATED_AT = "updated_at"; // 更新日時
-    String REP_COL_CLIID = "client_Id"; // 顧客ID
+    String REP_COL_CLIENT_NAME = "client_name"; // 担当顧客
 
     // Entity名
     String ENTITY_EMP = "employee"; // 従業員

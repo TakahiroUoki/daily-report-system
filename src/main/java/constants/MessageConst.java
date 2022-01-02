@@ -26,7 +26,7 @@ public enum MessageConst {
     E_NOTITLE("タイトルを入力してください。"),
     E_NOCONTENT("内容を入力してください。"),
     E_NOPROGRESS("進捗を入力してください。"),
-    E_NOCLIID("顧客IDを入力してください。");
+    E_NOCLIENT("担当顧客を入力してください。");
 
     /**
      * 文字列
