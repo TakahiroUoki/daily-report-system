@@ -3,8 +3,6 @@ package services;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import actions.views.ClientConverter;
-import actions.views.ClientView;
 import actions.views.EmployeeConverter;
 import actions.views.EmployeeView;
 import actions.views.ReportConverter;
@@ -43,36 +41,6 @@ public class ReportService extends ServiceBase {
 
         long count = (long) em.createNamedQuery(JpaConst.Q_REP_COUNT_ALL_MINE, Long.class)
                 .setParameter(JpaConst.JPQL_PARM_EMPLOYEE, EmployeeConverter.toModel(employee))
-                .getSingleResult();
-
-        return count;
-    }
-
-    /**
-     * 指定した顧客担当の日報データを、指定されたページ数の一覧画面に表示する分取得しReportViewのリストで返却する
-     * @param client 顧客
-     * @param page ページ数
-     * @return 一覧画面に表示するデータのリスト
-     */
-    public List<ReportView> getYoursPerPage(ClientView client, int page) {
-
-        List<Report> reports = em.createNamedQuery(JpaConst.Q_REP_GET_ALL_YOURS, Report.class)
-                .setParameter(JpaConst.JPQL_PARM_CLIENT, ClientConverter.toModel(client))
-                .setFirstResult(JpaConst.ROW_PER_PAGE * (page - 1))
-                .setMaxResults(JpaConst.ROW_PER_PAGE)
-                .getResultList();
-        return ReportConverter.toViewList(reports);
-    }
-
-    /**
-     * 指定した顧客担当の日報データの件数を取得し、返却する
-     * @param client
-     * @return 日報データの件数
-     */
-    public long countAllYours(ClientView client) {
-
-        long count = (long) em.createNamedQuery(JpaConst.Q_REP_COUNT_ALL_YOURS, Long.class)
-                .setParameter(JpaConst.JPQL_PARM_CLIENT, ClientConverter.toModel(client))
                 .getSingleResult();
 
         return count;
