@@ -55,7 +55,7 @@ public interface JpaConst {
     String REP_COL_PROGRESS = "progress"; //進捗
     String REP_COL_CREATED_AT = "created_at"; // 登録日時
     String REP_COL_UPDATED_AT = "updated_at"; // 更新日時
-    String REP_COL_CLIENT_NAME = "client_name"; // 担当顧客
+    String REP_COL_CLIENT = "client"; // 担当顧客
 
     // Entity名
     String ENTITY_EMP = "employee"; // 従業員
@@ -101,7 +101,7 @@ public interface JpaConst {
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
     //指定した顧客担当の日報を全件idの降順で取得する
     String Q_REP_GET_ALL_YOURS = ENTITY_REP + ".getAllYOURS";
-    String Q_REP_GET_ALL_YOURS_DEF = "SELECT r FROM Report AS r WHERE r.client = :" + JPQL_PARM_CLIENT + " ORDER BY r.clientName DESC";
+    String Q_REP_GET_ALL_YOURS_DEF = "SELECT r FROM Report AS r WHERE r.client = :" + JPQL_PARM_CLIENT + " ORDER BY r.client DESC";
     //指定した顧客担当の日報の件数を取得する
     String Q_REP_COUNT_ALL_YOURS = ENTITY_REP + ".countAllYOURS";
     String Q_REP_COUNT_ALL_YOURS_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.client = :" + JPQL_PARM_CLIENT;
