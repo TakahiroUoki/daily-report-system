@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 
 import actions.views.EmployeeView;
+import actions.views.ClientView;
 import actions.views.ReportView;
 import constants.AttributeConst;
 import constants.ForwardConst;
@@ -113,9 +114,9 @@ public class ReportAction extends ActionBase {
                     getRequestParam(AttributeConst.REP_TITLE),
                     getRequestParam(AttributeConst.REP_CONTENT),
                     getRequestParam(AttributeConst.REP_PROGRESS),
-                    getRequestParam(AttributeConst.REP_CLIENT),
                     null,
-                    null);
+                    null,
+                    getRequestParam(AttributeConst.REP_CLIENT));
 
             // 日報情報登録
             List<String> errors = service.create(rv);
