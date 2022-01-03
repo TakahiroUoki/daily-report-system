@@ -47,10 +47,10 @@ public class ClientAction extends ActionBase {
         List<ClientView> clients = service.getPerPage(page);
 
         // 全ての顧客データの件数を取得
-        long clientCount = service.countAll();
+        long clientsCount = service.countAll();
 
         putRequestScope(AttributeConst.CLIENTS, clients); // 取得した顧客データ
-        putRequestScope(AttributeConst.CLI_COUNT, clientCount); // 全ての顧客データの件数
+        putRequestScope(AttributeConst.CLI_COUNT, clientsCount); // 全ての顧客データの件数
         putRequestScope(AttributeConst.PAGE, page); // ページ数
         putRequestScope(AttributeConst.MAX_ROW, JpaConst.ROW_PER_PAGE); // 1ページに表示するレコードの数
 
@@ -62,7 +62,7 @@ public class ClientAction extends ActionBase {
         }
 
         // 一覧画面を表示
-        forward(ForwardConst.FW_EMP_INDEX);
+        forward(ForwardConst.FW_CLI_INDEX);
 
 
     }
