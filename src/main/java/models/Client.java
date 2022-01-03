@@ -28,7 +28,7 @@ import lombok.Setter;
             query = JpaConst.Q_CLI_GET_ALL_DEF),
     @NamedQuery(
             name = JpaConst.Q_CLI_COUNT,
-            query = JpaConst.Q_CLI_COUNT_DEF),
+            query = JpaConst.Q_CLI_COUNT_DEF)
 })
 @Getter // 全てのクラスフィールドについてgetterを自動生成する(Lombok)
 @Setter // 全てのクラスフィールドについてsetterを自動生成する(Lombok)

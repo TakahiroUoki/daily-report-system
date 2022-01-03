@@ -20,7 +20,7 @@ public class ClientService  extends ServiceBase {
      * @return 表示するデータのリスト
      */
     public List<ClientView> getPerPage(int page){
-        List<Client> clients = em.createNamedQuery(JpaConst.Q_EMP_GET_ALL, Client.class)
+        List<Client> clients = em.createNamedQuery(JpaConst.Q_CLI_GET_ALL, Client.class)
                 .setFirstResult(JpaConst.ROW_PER_PAGE * (page - 1))
                 .setMaxResults(JpaConst.ROW_PER_PAGE)
                 .getResultList();

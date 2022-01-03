@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 
-import actions.views.ClientView;
 import actions.views.EmployeeView;
 import actions.views.ReportView;
 import constants.AttributeConst;
