@@ -24,6 +24,14 @@
                     <td><c:out value="${client.depart}" /></td>
                 </tr>
                 <tr>
+                    <th>課</th>
+                    <td><c:out value="${client.division}" /></td>
+                </tr>
+                <tr>
+                    <th>役職</th>
+                    <td><c:out value="${client.position}" /></td>
+                </tr>
+                <tr>
                     <th>登録日時</th>
                     <fmt:parseDate value="${client.createdAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="createDay" type="date" />
                     <td><fmt:formatDate value="${createDay}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
