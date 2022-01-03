@@ -116,7 +116,7 @@ public class ClientAction extends ActionBase {
                 putRequestScope(AttributeConst.ERR, errors); // エラーのリスト
 
                 // 新規登録画面を再表示
-                forward(ForwardConst.FW_EMP_NEW);
+                forward(ForwardConst.FW_CLI_NEW);
 
             }else {
                 // 登録中にエラーがなかった場合
@@ -174,7 +174,7 @@ public class ClientAction extends ActionBase {
         putRequestScope(AttributeConst.CLIENT, cv); // 取得した顧客情報
 
         // 編集画面を表示する
-        forward(ForwardConst.FW_EMP_EDIT);
+        forward(ForwardConst.FW_CLI_EDIT);
     }
 
     /**
