@@ -102,10 +102,10 @@ public class Report {
     private LocalDateTime updatedAt;
 
     /**
-     * 担当顧客
+     * 担当顧客番号
      */
     @Lob
-    @Column(name = JpaConst.REP_COL_CLIENT, nullable = false)
-    private String client;
+    @Column(name = JpaConst.REP_COL_CLI, nullable = false)
+    private String clientNumber;
 
 }

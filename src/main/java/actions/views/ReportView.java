@@ -59,8 +59,8 @@ public class ReportView {
     private LocalDateTime updatedAt;
 
     /**
-     * 担当顧客
+     * 担当顧客番号
      */
-    private String client;
+    private String clientNumber;
 
 }

@@ -7,7 +7,6 @@ import java.util.List;
 import javax.servlet.ServletException;
 
 import actions.views.EmployeeView;
-import actions.views.ClientView;
 import actions.views.ReportView;
 import constants.AttributeConst;
 import constants.ForwardConst;
@@ -116,7 +115,7 @@ public class ReportAction extends ActionBase {
                     getRequestParam(AttributeConst.REP_PROGRESS),
                     null,
                     null,
-                    getRequestParam(AttributeConst.REP_CLIENT));
+                    getRequestParam(AttributeConst.REP_CLIENT_NUMBER));
 
             // 日報情報登録
             List<String> errors = service.create(rv);
@@ -212,7 +211,7 @@ public class ReportAction extends ActionBase {
             rv.setTitle(getRequestParam(AttributeConst.REP_TITLE));
             rv.setContent(getRequestParam(AttributeConst.REP_CONTENT));
             rv.setProgress(getRequestParam(AttributeConst.REP_PROGRESS));
-            rv.setClient(getRequestParam(AttributeConst.REP_CLIENT));
+            rv.setClientNumber(getRequestParam(AttributeConst.REP_CLIENT_NUMBER));
 
             // 日報データを更新する
             List<String> errors = service.update(rv);
