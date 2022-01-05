@@ -16,20 +16,16 @@
         <table>
             <tbody>
                 <tr>
+                    <th>顧客番号</th>
+                    <td><c:out value="${client.number}" /></td>
+                </tr>
+                <tr>
                     <th>氏名</th>
                     <td><c:out value="${client.name}" /></td>
                 </tr>
                 <tr>
-                    <th>部署</th>
+                    <th>部課</th>
                     <td><c:out value="${client.depart}" /></td>
-                </tr>
-                <tr>
-                    <th>課</th>
-                    <td><c:out value="${client.division}" /></td>
-                </tr>
-                <tr>
-                    <th>役職</th>
-                    <td><c:out value="${client.position}" /></td>
                 </tr>
                 <tr>
                     <th>登録日時</th>
@@ -44,9 +40,9 @@
             </tbody>
         </table>
 
-        <p>
-            <a href="<c:url value='?action=${actCli}&command=${commEdit}&id=${client.id}' />">この顧客情報を編集する</a>
-        </p>
+            <p>
+                <a href="<c:url value='?action=${actCli}&command=${commEdit}&id=${client.id}' />">この顧客情報を編集する</a>
+            </p>
 
         <p>
             <a href="<c:url value='?action=${actCli}&command=${commIdx}' />">一覧に戻る</a>

@@ -19,16 +19,18 @@
         <table id="client_list">
             <tbody>
                 <tr>
+                    <th>顧客番号</th>
                     <th>氏名</th>
                     <th>操作</th>
                 </tr>
                 <c:forEach var="client" items="${clients}" varStatus="status">
                     <tr class="row${status.count % 2}">
+                        <td><c:out value="${client.number}" /></td>
                         <td><c:out value="${client.name}"/></td>
                         <td>
                             <c:choose>
                                 <c:when test="${client.deleteFlag == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()}">
-                                    (削除済み)
+                                    （削除済み）
                                 </c:when>
                                 <c:otherwise>
                                     <a href="<c:url value='?action=${actCli}&command=${commShow}&id=${client.id}' />">詳細を見る</a>

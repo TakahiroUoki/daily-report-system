@@ -3,6 +3,8 @@ package services;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import actions.views.ClientConverter;
 import actions.views.ClientView;
 import constants.JpaConst;
@@ -40,6 +42,25 @@ public class ClientService  extends ServiceBase {
     }
 
     /**
+     * 顧客番号を条件に取得したデータをClientViewのインスタンスで返却する
+     * @param number 顧客番号
+     * @return 取得データのインスタンス 取得できない場合null
+     */
+    public ClientView findOne(String number) {
+        Client c = null;
+        try {
+
+            // 顧客番号を条件に未削除の顧客を1件取得する
+            c = em.createNamedQuery(JpaConst.Q_CLI_GET_BY_NUMBER, Client.class)
+                    .setParameter(JpaConst.JPQL_PARM_NUMBER, number)
+                    .getSingleResult();
+        }catch (NoResultException ex ) {
+        }
+
+        return ClientConverter.toView(c);
+    }
+
+    /**
      * idを条件に取得したデータをClientViewのインスタンスで返却する
      * @param id
      * @return 取得データのインスタンス
@@ -50,12 +71,25 @@ public class ClientService  extends ServiceBase {
     }
 
     /**
+     * 顧客番号を条件に該当するデータの件数を取得し、返却
+     * @param number 顧客番号
+     * @return 該当するデータの件数
+     */
+    public long countByNumber(String number) {
+
+        // 指定した顧客番号を保持する顧客の件数を取得
+        long clients_count = (long) em.createNamedQuery(JpaConst.Q_CLI_COUNT_RESISTERED_BY_NUMBER, Long.class)
+                .setParameter(JpaConst.JPQL_PARM_NUMBER, number)
+                .getSingleResult();
+        return clients_count;
+    }
+
+    /**
      * 画面から入力された顧客の登録内容をもとにデータを1件作成し、顧客テーブルに登録する
      * @param cv 画面から入力された顧客の登録内容
-     * @param pepper pepper文字列
      * @return バリデーションや登録処理中に発生したエラーのリスト
      */
-    public List<String> create(ClientView cv, String pepper) {
+    public List<String> create(ClientView cv) {
 
         // 登録日時、更新日時は現在時刻を設定する
         LocalDateTime now = LocalDateTime.now();
@@ -63,11 +97,11 @@ public class ClientService  extends ServiceBase {
         cv.setUpdatedAt(now);
 
         // 登録内容のバリデーションを行う
-        List<String> errors = ClientValidator.validate(cv);
+        List<String> errors = ClientValidator.validate(this, cv, true);
 
         // バリデーションエラーがなければデータを登録する
         if(errors.size() == 0) {
-            create(cv);
+            createInternal(cv);
         }
 
         // エラーを返却(エラーがなければ0件の空リスト)
@@ -80,26 +114,34 @@ public class ClientService  extends ServiceBase {
      * @param pepper pepper文字列
      * @return バリデーションや更新処理中に発生したエラーのリスト
      */
-    public List<String> update(ClientView cv, String pepper) {
+    public List<String> update(ClientView cv) {
 
         //idを条件に登録済みの従業員情報を取得する
        ClientView savedCli = findOne(cv.getId());
 
+       boolean validateNumber = false;
+       if(!savedCli.getNumber().equals(cv.getNumber())) {
+           // 顧客番号を更新する場合
+
+           // 顧客番号についてのバリデーションを行う
+           validateNumber = true;
+           // 変更後の顧客番号を設定する
+           savedCli.setNumber(cv.getNumber());
+       }
+
         savedCli.setName(cv.getName()); //変更後の氏名を設定する
-        savedCli.setDepart(cv.getDepart()); // 変更後の部署を設定する
-        savedCli.setDivision(cv.getDivision()); // 変更後の課を設定する
-        savedCli.setPosition(cv.getPosition()); // 変更後の役職を設定する
+        savedCli.setDepart(cv.getDepart()); // 変更後の部課を設定する
 
         //更新日時に現在時刻を設定する
         LocalDateTime today = LocalDateTime.now();
         savedCli.setUpdatedAt(today);
 
         //更新内容についてバリデーションを行う
-        List<String> errors = ClientValidator.validate(savedCli);
+        List<String> errors = ClientValidator.validate(this, savedCli, validateNumber);
 
         //バリデーションエラーがなければデータを更新する
         if (errors.size() == 0) {
-            update(savedCli);
+            updateInternal(savedCli);
         }
 
         //エラーを返却（エラーがなければ0件の空リスト）
@@ -112,19 +154,41 @@ public class ClientService  extends ServiceBase {
      */
     public void destroy(Integer id) {
 
-        //idを条件に登録済みの顧客情報を取得する
+        // idを条件に登録済みの顧客情報を取得する
         ClientView savedCli = findOne(id);
 
-        //更新日時に現在時刻を設定する
+        // 更新日時に現在時刻を設定
         LocalDateTime today = LocalDateTime.now();
         savedCli.setUpdatedAt(today);
 
-        //論理削除フラグをたてる
+        // 論理削除フラグをたてる
         savedCli.setDeleteFlag(JpaConst.CLI_DEL_TRUE);
 
-        //更新処理を行う
+        // 更新処理を行う
         update(savedCli);
 
+    }
+
+    /**
+     * 顧客番号を条件に検索し、データが取得できるかどうかで認証結果を返却
+     * @param number 顧客番号
+     * @return 認証結果を返却(成功:true 失敗:false)
+     */
+    public Boolean validateLogin(String number) {
+
+        boolean isValidClient = false;
+        if(number != null && !number.equals("")) {
+            ClientView cv = findOne(number);
+
+            if(cv != null && cv.getId() != null) {
+
+                // データが取得できた場合、認証成功
+                isValidClient = true;
+            }
+        }
+
+       // 認証結果を返却
+        return isValidClient;
     }
 
     /**
@@ -143,7 +207,7 @@ public class ClientService  extends ServiceBase {
      * @param cv 顧客データ
      * @return 登録結果(成功:true 失敗:false)
      */
-    private void create(ClientView cv) {
+    private void createInternal(ClientView cv) {
 
         em.getTransaction().begin();
         em.persist(ClientConverter.toModel(cv));
@@ -155,7 +219,7 @@ public class ClientService  extends ServiceBase {
      * 顧客データを更新する
      * @param cv 画面から入力された顧客の登録内容
      */
-    private void update(ClientView cv) {
+    private void updateInternal(ClientView cv) {
 
         em.getTransaction().begin();
         Client c = findOneInternal(cv.getId());

@@ -4,16 +4,14 @@
 <%@ page import="constants.ForwardConst" %>
 
 <c:set var="action" value="${ForwardConst.ACT_CLI.getValue()}" />
-<c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commUpd" value="${ForwardConst.CMD_UPDATE.getValue()}" />
-<c:set var="commDel" value="${ForwardConst.CMD_DESTROY.getValue() }" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
 
         <h2>id : ${client.id} の顧客情報 編集ページ</h2>
         <form method="POST"
-            action="<c:url value='?action=${action}&command=${command}' />">
+            action="<c:url value='?action=${action}&command=${commUpd}' />">
             <c:import url="_form.jsp" />
         </form>
 
@@ -27,14 +25,14 @@
         </form>
         <script>
             function confirmDestroy() {
-                if(confrim("本当に削除してもよろしいですか?")) {
+                if (confirm("本当に削除してよろしいですか？")) {
                     document.forms[1].submit();
                 }
             }
         </script>
 
         <p>
-            <a href="<c:url value='?action=${action}&command=${commIdx}' />">一覧に戻る</a>
+            <a href="<c:url value='?action=${action}&command=index' />">一覧に戻る</a>
         </p>
     </c:param>
 </c:import>

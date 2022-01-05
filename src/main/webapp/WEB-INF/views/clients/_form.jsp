@@ -15,29 +15,18 @@
 
     </div>
 </c:if>
+<label for = "${Attributeconst.CLI_NUMBER.getValue()}">顧客番号</label><br />
+<input type="text" name="${AttributeConst.CLI_NUMBER.getValue()}" value="${client.number}" />
+<br /><br />
+
 <label for="${AttributeConst.CLI_NAME.getValue()}">氏名</label><br />
 <input type="text" name="${AttributeConst.CLI_NAME.getValue()}" value="${client.name}" />
 <br /><br />
 
-<label for="${AttributeConst.CLI_DEPART.getValue()}">部署</label><br />
+<label for="${AttributeConst.CLI_DEPART.getValue()}">部課</label><br />
 <input type="text" name="${AttributeConst.CLI_DEPART.getValue()}" value="${client.depart}" />
 <br /><br />
 
-<label for="${AttributeConst.CLI_DIVISION.getValue()}">課</label><br />
-<input type="text" name="${AttributeConst.CLI_DIVISION.getValue()}" value="${client.division}" />
-<br /><br />
-
-<label for="${AttributeConst.CLI_POSITION.getValue()}">役職</label><br />
-<select name="役職">
-    <option value="">以下より選択</option>
-    <option value="なし">なし</option>
-    <option value="主任">主任</option>
-    <option value="課長代理">課長代理</option>
-    <option value="課長">課長</option>
-    <option value="部長">部長</option>
-    <option value="その他">その他</option>
-</select>
-<br /><br />
 
 <input type="hidden" name="${AttributeConst.CLI_ID.getValue()}" value="${client.id}" />
 <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />

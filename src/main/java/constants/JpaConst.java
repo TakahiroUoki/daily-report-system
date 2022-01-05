@@ -90,6 +90,9 @@ public interface JpaConst {
     // 顧客番号を条件に未削除の顧客を取得する
     String Q_CLI_GET_BY_NUMBER = ENTITY_CLI + ".getByNumber";
     String Q_CLI_GET_BY_NUMBER_DEF = "SELECT c FROM Client AS c WHERE c.deleteFlag = 0 AND c.number = :" + JPQL_PARM_NUMBER;
+    //指定した顧客番号を保持する顧客の件数を取得する
+    String Q_CLI_COUNT_RESISTERED_BY_NUMBER = ENTITY_CLI + ".countRegisteredByNumber";
+    String Q_CLI_COUNT_RESISTERED_BY_NUMBER_DEF = "SELECT COUNT(c) FROM Client AS c WHERE c.number = :" + JPQL_PARM_NUMBER;
     //全ての日報をidの降順に取得する
     String Q_REP_GET_ALL = ENTITY_REP + ".getAll";
     String Q_REP_GET_ALL_DEF = "SELECT r FROM Report AS r ORDER BY r.id DESC";

@@ -24,6 +24,7 @@ public enum MessageConst {
     E_EMP_CODE_EXIST("入力された社員番号の情報は既に存在しています。"),
     E_NODEPART("顧客の部署を入力してください"),
     E_NOCLI_NUMBER("顧客ナンバーを入力してください"),
+    E_CLI_NUMBER_EXIST("入力された顧客番号の情報は既に存在しています。"),
     E_NOTITLE("タイトルを入力してください。"),
     E_NOCONTENT("内容を入力してください。"),
     E_NOPROGRESS("進捗を入力してください。");

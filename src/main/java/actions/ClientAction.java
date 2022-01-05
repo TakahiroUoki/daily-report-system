@@ -10,7 +10,6 @@ import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
 import constants.MessageConst;
-import constants.PropertyConst;
 import services.ClientService;
 
 /**
@@ -94,19 +93,16 @@ public class ClientAction extends ActionBase {
             // パラメータの値を元に顧客情報のインスタンスを作成
             ClientView cv = new ClientView(
                     null,
+                    getRequestParam(AttributeConst.CLI_NUMBER),
                     getRequestParam(AttributeConst.CLI_NAME),
                     getRequestParam(AttributeConst.CLI_DEPART),
-                    getRequestParam(AttributeConst.CLI_DIVISION),
-                    getRequestParam(AttributeConst.CLI_POSITION),
                     null,
                     null,
                     AttributeConst.DEL_FLAG_FALSE.getIntegerValue());
 
-            // アプリケーションスコープからpepper文字列を取得
-            String pepper = getContextScope(PropertyConst.PEPPER);
 
             // 顧客情報登録
-            List<String> errors = service.create(cv, pepper);
+            List<String> errors = service.create(cv);
 
             if(errors.size() > 0) {
                 // 登録中にエラーがあった場合
@@ -140,18 +136,18 @@ public class ClientAction extends ActionBase {
         // idを条件に顧客データを取得する
         ClientView cv = service.findOne(toNumber(getRequestParam(AttributeConst.CLI_ID)));
 
-        if(cv == null || cv.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()) {
+        if(cv == null) {
 
-          // データが取得できなかった、または論理削除されている場合はエラー画面を表示
+            // データが取得できなかった場合はエラー画面を表示
             forward(ForwardConst.FW_ERR_UNKNOWN);
-            return;
+        }else {
+
+            putRequestScope(AttributeConst.CLIENT, cv); // 取得した顧客情報
+
+            // 詳細画面を表示
+            forward(ForwardConst.FW_CLI_SHOW);
         }
-
-        putRequestScope(AttributeConst.CLIENT, cv); // 取得した顧客情報
-
-        // 詳細画面を表示
-        forward(ForwardConst.FW_CLI_SHOW);
-    }
+      }
 
     /**
      * 編集画面を表示する
@@ -163,18 +159,19 @@ public class ClientAction extends ActionBase {
         // idを条件に顧客データを取得する
         ClientView cv = service.findOne(toNumber(getRequestParam(AttributeConst.CLI_ID)));
 
-        if(cv == null || cv.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()) {
+        if(cv == null) {
 
-            // データが取得できなかった、または論理削除されている場合はエラー画面を表示
+            // データが取得できなかった場合はエラー画面を表示
             forward(ForwardConst.FW_ERR_UNKNOWN);
-            return;
+
+        }else {
+
+            putRequestScope(AttributeConst.TOKEN, getTokenId()); // CSRF対策用トークン
+            putRequestScope(AttributeConst.CLIENT, cv); // 取得した顧客情報
+
+            // 編集画面を表示する
+            forward(ForwardConst.FW_CLI_EDIT);
         }
-
-        putRequestScope(AttributeConst.TOKEN, getTokenId()); // CSRF対策用トークン
-        putRequestScope(AttributeConst.CLIENT, cv); // 取得した顧客情報
-
-        // 編集画面を表示する
-        forward(ForwardConst.FW_CLI_EDIT);
     }
 
     /**
@@ -189,19 +186,16 @@ public class ClientAction extends ActionBase {
             // パラメータの値を元に顧客情報のインスタンスを作成
             ClientView cv = new ClientView(
                     toNumber(getRequestParam(AttributeConst.CLI_ID)),
+                    getRequestParam(AttributeConst.CLI_NUMBER),
                     getRequestParam(AttributeConst.CLI_NAME),
                     getRequestParam(AttributeConst.CLI_DEPART),
-                    getRequestParam(AttributeConst.CLI_DIVISION),
-                    getRequestParam(AttributeConst.CLI_POSITION),
                     null,
                     null,
                     AttributeConst.DEL_FLAG_FALSE.getIntegerValue());
 
-            // アプリケーションスコープからpepper文字列を取得
-            String pepper = getContextScope(PropertyConst.PEPPER);
 
             // 顧客情報更新
-            List<String> errors = service.update(cv, pepper);
+            List<String> errors = service.update(cv);
 
             if(errors.size() > 0) {
                // 更新中にエラーが発生した場合
@@ -233,16 +227,16 @@ public class ClientAction extends ActionBase {
      */
     public void destroy() throws ServletException, IOException {
 
-        // CSRF対策 tokenのチェック
-        if(checkToken()) {
+        //CSRF対策 tokenのチェック
+        if (checkToken()) {
 
-            // idを条件に顧客データを論理削除する
+            //idを条件に顧客データを論理削除する
             service.destroy(toNumber(getRequestParam(AttributeConst.CLI_ID)));
 
-            // セッションに削除完了のフラッシュメッセージを設定
+            //セッションに削除完了のフラッシュメッセージを設定
             putSessionScope(AttributeConst.FLUSH, MessageConst.I_DELETED.getMessage());
 
-            // 一覧画面にリダイレクト
+            //一覧画面にリダイレクト
             redirect(ForwardConst.ACT_CLI, ForwardConst.CMD_INDEX);
         }
     }
