@@ -24,8 +24,6 @@ public class ClientConverter {
                 cv.getId(),
                 cv.getName(),
                 cv.getDepart(),
-                cv.getDivision(),
-                cv.getPosition(),
                 cv.getCreatedAt(),
                 cv.getUpdatedAt(),
                 cv.getDeleteFlag() == null
@@ -50,15 +48,13 @@ public class ClientConverter {
                 c.getId(),
                 c.getName(),
                 c.getDepart(),
-                c.getDivision(),
-                c.getPosition(),
                 c.getCreatedAt(),
                 c.getUpdatedAt(),
                 c.getDeleteFlag() == null
                     ? null
                     : c.getDeleteFlag() == JpaConst.CLI_DEL_TRUE
-                            ? AttributeConst.DEL_FLAG_TRUE.getIntegerValue()
-                            : AttributeConst.DEL_FLAG_FALSE.getIntegerValue());
+                        ? AttributeConst.DEL_FLAG_TRUE.getIntegerValue()
+                        : AttributeConst.DEL_FLAG_FALSE.getIntegerValue());
     }
 
     /**
@@ -86,8 +82,6 @@ public class ClientConverter {
         c.setId(cv.getId());
         c.setName(cv.getName());
         c.setDepart(cv.getDepart());
-        c.setDivision(cv.getDivision());
-        c.setPosition(cv.getPosition());
         c.setCreatedAt(cv.getCreatedAt());
         c.setUpdatedAt(cv.getUpdatedAt());
         c.setDeleteFlag(cv.getDeleteFlag());

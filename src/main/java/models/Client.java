@@ -28,8 +28,12 @@ import lombok.Setter;
             query = JpaConst.Q_CLI_GET_ALL_DEF),
     @NamedQuery(
             name = JpaConst.Q_CLI_COUNT,
-            query = JpaConst.Q_CLI_COUNT_DEF)
+            query = JpaConst.Q_CLI_COUNT_DEF),
+    @NamedQuery(
+            name = JpaConst.Q_CLI_GET_BY_DEPART,
+            query = JpaConst.Q_CLI_GET_BY_DEPART_DEF)
 })
+
 @Getter // 全てのクラスフィールドについてgetterを自動生成する(Lombok)
 @Setter // 全てのクラスフィールドについてsetterを自動生成する(Lombok)
 @NoArgsConstructor // 引数なしコンストラクタを自動生成する(Lombok)
@@ -52,22 +56,10 @@ public class Client {
     private String name;
 
     /**
-     * 部署
+     * 部課
      */
     @Column(name = JpaConst.CLI_COL_DEPART, nullable = false)
     private String depart;
-
-    /**
-     * 課
-     */
-    @Column(name = JpaConst.CLI_COL_DIVISION, nullable = false)
-    private String division;
-
-    /**
-     * 役職
-     */
-    @Column(name = JpaConst.CLI_COL_POSITION, nullable = false)
-    private String position;
 
     /**
      * 登録日時
@@ -82,10 +74,9 @@ public class Client {
     private LocalDateTime updatedAt;
 
     /**
-     * 削除された顧客かどうか(現役:0、削除済み:1)
+     * 削除された顧客かどうか（現役：0、削除済み：1）
      */
     @Column(name = JpaConst.CLI_COL_DELETE_FLAG, nullable = false)
     private Integer deleteFlag;
-
 
 }

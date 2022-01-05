@@ -28,19 +28,9 @@ public class ClientView {
     private String name;
 
     /**
-     * 部署
+     * 部課
      */
     private String depart;
-
-    /**
-     * 課
-     */
-    private String division;
-
-    /**
-     * 役職
-     */
-    private String position;
 
     /**
      * 登録日時
