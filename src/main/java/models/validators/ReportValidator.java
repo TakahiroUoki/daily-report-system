@@ -38,7 +38,7 @@ public class ReportValidator {
         }
 
         // 担当顧客のチェック
-        String clientError = validateClient(rv.getClientNumber());
+        String clientError = validateClient(rv.getClient());
         if(!clientError.equals("")) {
             errors.add(clientError);
         }
@@ -95,7 +95,7 @@ public class ReportValidator {
      */
     private static String validateClient(String client) {
         if(client == null || client.equals("")) {
-            return MessageConst.E_NOCLI_NUMBER.getMessage();
+            return MessageConst.E_NOCLIENT.getMessage();
         }
 
         // 入力値がある場合は空文字を返却

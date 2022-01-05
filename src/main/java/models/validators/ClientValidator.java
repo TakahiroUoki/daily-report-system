@@ -55,7 +55,7 @@ public class ClientValidator {
 
         // 入力値がなければエラーメッセージを返却
         if(number == null || number.equals("")) {
-            return MessageConst.E_NOCLI_NUMBER.getMessage();
+            return MessageConst.E_NO_NUMBER.getMessage();
         }
 
         if(numberDuplicateCheckFlag) {

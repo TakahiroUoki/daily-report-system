@@ -33,8 +33,8 @@
 <textarea name="${AttributeConst.REP_PROGRESS.getValue()}" rows="5" cols="25">${report.progress}</textarea>
 <br /><br />
 
-<label for="${AttributeConst.REP_CLIENT_NUMBER.getValue()}">担当顧客番号</label><br />
-<textarea name="${AttributeConst.REP_CLIENT_NUMBER.getValue()}" rows="3" cols="30">${report.client}</textarea>
+<label for="${AttributeConst.REP_CLIENT.getValue()}">担当顧客</label><br />
+<textarea name="${AttributeConst.REP_CLIENT.getValue()}" rows="3" cols="30">${report.client}</textarea>
 <br /><br />
 <input type="hidden" name="${AttributeConst.REP_ID.getValue()}" value="${report.id}" />
 <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />

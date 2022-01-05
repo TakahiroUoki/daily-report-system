@@ -42,7 +42,7 @@
                     <td><fmt:formatDate value="${updateDay}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
                 </tr>
                 <tr>
-                    <th>担当顧客番号</th>
+                    <th>担当顧客</th>
                     <td><c:out value="${report.client}" /></td>
                 </tr>
             </tbody>
