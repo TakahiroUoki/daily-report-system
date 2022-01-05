@@ -38,6 +38,7 @@ public interface JpaConst {
     String CLI_COL_DEPART = "depart"; // 部課
     String CLI_COL_CREATED_AT = "created_at"; // 登録日時
     String CLI_COL_UPDATED_AT = "updated_at"; // 更新日時
+    String CLI_COL_DELETE_FLAG = "delete_flag"; // 削除フラグ
 
     int CLI_DEL_TRUE = 1; // 削除フラグON(削除済み)
     int CLI_DEL_FALSE = 0; // 削除フラグOFF(現役)
