@@ -44,6 +44,7 @@ public enum AttributeConst {
     CLIENTS("clients"),
     CLI_COUNT("clients_count"),
     CLI_ID("id"),
+    CLI_NUMBER("number"),
     CLI_NAME("name"),
     CLI_DEPART("depart"),
 
@@ -60,7 +61,7 @@ public enum AttributeConst {
     REP_TITLE("title"),
     REP_CONTENT("content"),
     REP_PROGRESS("progress"),
-    REP_CLIENT("client");
+    REP_CLIENT_NUMBER("client_number");
 
     private final String text;
     private final Integer i;

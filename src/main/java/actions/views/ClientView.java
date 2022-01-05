@@ -23,6 +23,11 @@ public class ClientView {
     private Integer id;
 
     /**
+     * 顧客番号
+     */
+    private String number;
+
+    /**
      * 氏名
      */
     private String name;

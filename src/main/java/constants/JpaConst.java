@@ -34,6 +34,7 @@ public interface JpaConst {
     String TABLE_CLI = "clients"; // テーブル名
     // 顧客テーブルカラム
     String CLI_COL_ID = "id"; // id
+    String CLI_COL_NUMBER = "number"; // 顧客番号
     String CLI_COL_NAME = "name"; // 氏名
     String CLI_COL_DEPART = "depart"; // 部課
     String CLI_COL_CREATED_AT = "created_at"; // 登録日時
@@ -54,7 +55,7 @@ public interface JpaConst {
     String REP_COL_PROGRESS = "progress"; //進捗
     String REP_COL_CREATED_AT = "created_at"; // 登録日時
     String REP_COL_UPDATED_AT = "updated_at"; // 更新日時
-    String REP_COL_CLIENT = "client"; // 担当顧客
+    String REP_COL_CLI = "client_number"; // 担当顧客番号
 
     // Entity名
     String ENTITY_EMP = "employee"; // 従業員
@@ -63,9 +64,9 @@ public interface JpaConst {
 
     // JPQL内パラメータ
     String JPQL_PARM_CODE = "code"; // 社員番号
+    String JPQL_PARM_NUMBER = "number"; // 顧客番号
     String JPQL_PARM_PASSWORD = "password"; // パスワード
     String JPQL_PARM_EMPLOYEE = "employee"; // 従業員
-    String JPQL_PARM_DEPART = "depart"; // 部課
 
     // NamedQueryのnameとquery
     // 全ての従業員をidの降順に取得する
@@ -83,12 +84,12 @@ public interface JpaConst {
     // すべての顧客をidの降順に取得する
     String Q_CLI_GET_ALL = ENTITY_CLI + ".getAll"; // name
     String Q_CLI_GET_ALL_DEF = "SELECT c FROM Client AS c ORDER BY c.id DESC"; //query
-    // 部課を条件に未削除の顧客を取得する
-    String Q_CLI_GET_BY_DEPART = ENTITY_CLI + ".getByDepart";
-    String Q_CLI_GET_BY_DEPART_DEF = "SELECT c FROM Client AS c WHERE c.deleteFlag = 0 AND c.depart = :" + JPQL_PARM_DEPART;
     // 全ての顧客の件数を取得する
     String Q_CLI_COUNT = ENTITY_CLI + ".count";
     String Q_CLI_COUNT_DEF = "SELECT COUNT(c) FROM Client AS c";
+    // 顧客番号を条件に未削除の顧客を取得する
+    String Q_CLI_GET_BY_NUMBER = ENTITY_CLI + ".getByNumber";
+    String Q_CLI_GET_BY_NUMBER_DEF = "SELECT c FROM Client AS c WHERE c.deleteFlag = 0 AND c.number = :" + JPQL_PARM_NUMBER;
     //全ての日報をidの降順に取得する
     String Q_REP_GET_ALL = ENTITY_REP + ".getAll";
     String Q_REP_GET_ALL_DEF = "SELECT r FROM Report AS r ORDER BY r.id DESC";

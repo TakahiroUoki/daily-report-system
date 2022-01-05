@@ -22,6 +22,7 @@ public class ClientConverter {
 
         return new Client(
                 cv.getId(),
+                cv.getNumber(),
                 cv.getName(),
                 cv.getDepart(),
                 cv.getCreatedAt(),
@@ -46,6 +47,7 @@ public class ClientConverter {
 
         return new ClientView(
                 c.getId(),
+                c.getNumber(),
                 c.getName(),
                 c.getDepart(),
                 c.getCreatedAt(),
@@ -80,6 +82,7 @@ public class ClientConverter {
      */
     public static void copyViewToModel(Client c, ClientView cv) {
         c.setId(cv.getId());
+        c.setNumber(cv.getNumber());
         c.setName(cv.getName());
         c.setDepart(cv.getDepart());
         c.setCreatedAt(cv.getCreatedAt());
