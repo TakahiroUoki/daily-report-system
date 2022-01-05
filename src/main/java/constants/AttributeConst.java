@@ -46,8 +46,6 @@ public enum AttributeConst {
     CLI_ID("id"),
     CLI_NAME("name"),
     CLI_DEPART("depart"),
-    CLI_DIVISION("division"),
-    CLI_POSITION("position"),
 
     // 削除フラグ
     DEL_FLAG_TRUE(1),
