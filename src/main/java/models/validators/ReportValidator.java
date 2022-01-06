@@ -37,12 +37,6 @@ public class ReportValidator {
             errors.add(progressError);
         }
 
-        // 担当顧客のチェック
-        String clientError = validateClient(rv.getClient());
-        if(!clientError.equals("")) {
-            errors.add(clientError);
-        }
-
         return errors;
     }
 
@@ -87,19 +81,4 @@ public class ReportValidator {
         // 入力値がある場合は空文字を返却
         return "";
     }
-
-    /**
-     * 担当顧客に入力値があるかをチェックし、入力値がなければエラーメッセージを返却
-     * @param Client 顧客
-     * @return エラーメッセージ
-     */
-    private static String validateClient(String client) {
-        if(client == null || client.equals("")) {
-            return MessageConst.E_NOCLIENT.getMessage();
-        }
-
-        // 入力値がある場合は空文字を返却
-        return "";
-    }
-
 }

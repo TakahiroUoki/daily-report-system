@@ -106,6 +106,6 @@ public class Report {
      */
     @Lob
     @Column(name = JpaConst.REP_COL_CLI, nullable = false)
-    private Client client;
+    private String client;
 
 }
