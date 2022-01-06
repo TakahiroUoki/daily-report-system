@@ -71,20 +71,6 @@ public class ClientService  extends ServiceBase {
     }
 
     /**
-     * 顧客番号を条件に該当するデータの件数を取得し、返却
-     * @param number 顧客番号
-     * @return 該当するデータの件数
-     */
-    public long countByNumber(String number) {
-
-        // 指定した顧客番号を保持する顧客の件数を取得
-        long clients_count = (long) em.createNamedQuery(JpaConst.Q_CLI_COUNT_RESISTERED_BY_NUMBER, Long.class)
-                .setParameter(JpaConst.JPQL_PARM_NUMBER, number)
-                .getSingleResult();
-        return clients_count;
-    }
-
-    /**
      * 画面から入力された顧客の登録内容をもとにデータを1件作成し、顧客テーブルに登録する
      * @param cv 画面から入力された顧客の登録内容
      * @return バリデーションや登録処理中に発生したエラーのリスト
