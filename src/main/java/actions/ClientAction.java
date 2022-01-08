@@ -30,7 +30,6 @@ public class ClientAction extends ActionBase {
 
         // メソッドを実行
         invoke();
-
         service.close();
     }
 

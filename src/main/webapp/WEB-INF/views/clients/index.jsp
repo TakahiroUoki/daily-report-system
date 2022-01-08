@@ -15,7 +15,7 @@
                 <c:out value="${flush}"></c:out>
             </div>
         </c:if>
-        <h2>顧客 一覧</h2>
+        <h2>顧客 一覧(〇×商事)</h2>
         <table id="client_list">
             <tbody>
                 <tr>
